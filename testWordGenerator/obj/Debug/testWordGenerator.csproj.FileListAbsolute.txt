@@ -1,0 +1,15 @@
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\bin\Debug\testWordGenerator.exe.config
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\bin\Debug\testWordGenerator.exe
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\bin\Debug\testWordGenerator.pdb
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\testWordGenerator.csproj.AssemblyReference.cache
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\App.g.cs
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\testWordGenerator_MarkupCompile.cache
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\testWordGenerator_MarkupCompile.lref
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\testWordGenerator.g.resources
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\testWordGenerator.Properties.Resources.resources
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\testWordGenerator.csproj.GenerateResource.cache
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\testWordGenerator.csproj.CoreCompileInputs.cache
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\testWordGenerator.exe
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\testWordGenerator.pdb
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\Views\MainWindow.g.cs
+C:\Users\Рита\Desktop\лабы\testWordGenerator\testWordGenerator\obj\Debug\Views\MainWindow.baml

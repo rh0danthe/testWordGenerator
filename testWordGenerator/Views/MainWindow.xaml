@@ -1,0 +1,93 @@
+﻿<Window x:Class="testWordGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:testWordGenerator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="500">
+    <Grid x:Name="grid1">
+
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="30"></RowDefinition>
+            <RowDefinition  Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition  Height="50"></RowDefinition>
+            <RowDefinition  Height="40"></RowDefinition>
+            <RowDefinition  Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Width="200" Height="30" Content="Генератор тестовых данных" />
+        <Label Grid.Row="1"  Content="Ваш алфавит:" />
+        <Line Grid.Row="1" X1="0" Y1="0" X2="500" Y2="0" Stroke="Black" StrokeThickness="2"/>
+        <Line Grid.Row="4" X1="0" Y1="0" X2="500" Y2="0" Stroke="Black" StrokeThickness="2"/>
+
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="10">
+            <TextBlock Text="Количество символов в слове"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="от"/>
+                <TextBox x:Name="minLengthTextBox" Width="50" Margin="10,0,10,0" Text="5"/>
+                <TextBlock Text="до"/>
+                <TextBox x:Name="maxLengthTextBox" Width="50" Margin="10,0,0,0" Text="15"/>
+            </StackPanel>
+            <TextBlock Text="Выберите символы для генерации (укажите процент содержания):"/>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Цифры" Margin="0,0,20,0"/>
+                <TextBlock Text="Буквы" Margin="0,0,25,0"/>
+                <TextBlock Text="Специальные символы"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="NumPercent" Text="30" Width="50"  Margin="0,0,10,0"/>
+                <TextBox x:Name="LetterPercent" Text="30" Width="50" Margin="0,0,10,0"/>
+                <TextBox x:Name="SymbolPercent" Text="40" Width="50"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="параметры для букв:"  Margin="0,0,50,0"/>
+                <TextBlock Text="цифры:" Margin="0,0,115,0"/>
+                <TextBlock Text="специальные символы:" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <ListBox x:Name="languageComboBox" Width="115" SelectionMode="Multiple" Margin="0,0,50,0">
+                    <ListBoxItem Content="Русский"/>
+                    <ListBoxItem Content="Английский"/>
+                    <ListBoxItem Content="Маленькие буквы"/>
+                    <ListBoxItem Content="Большие буквы"/>
+                </ListBox>
+
+                <ListBox x:Name="numberComboBox"  Width="100"  SelectionMode="Multiple" Margin="0,0,50,0">
+                    <ListBoxItem Content="0"/>
+                    <ListBoxItem Content="1"/>
+                    <ListBoxItem Content="2"/>
+                    <ListBoxItem Content="3"/>
+                    <ListBoxItem  Content="4"/>
+                    <ListBoxItem  Content="5"/>
+                    <ListBoxItem  Content="6"/>
+                    <ListBoxItem  Content="7"/>
+                    <ListBoxItem  Content="8"/>
+                    <ListBoxItem  Content="9"/>
+                </ListBox>
+                <ListBox x:Name="symbolComboBox" Width="100" SelectionMode="Multiple ">
+                    <ListBoxItem Content="!"/>
+                    <ListBoxItem Content="@"/>
+                    <ListBoxItem Content="#"/>
+                    <ListBoxItem Content="$"/>
+                    <ListBoxItem Content="%"/>
+                    <ListBoxItem Content="^"/>
+                    <ListBoxItem Content="?"/>
+                    <ListBoxItem Content="*"/>
+                    <ListBoxItem Content="("/>
+                    <ListBoxItem Content=")"/>
+                </ListBox>
+            </StackPanel>
+            <TextBlock Text="Количество генерируемых слов:"/>
+            <TextBox x:Name="wordCountTextBox" Width="50" Margin="0,0,410,0" Text="15"/>
+        </StackPanel>
+
+        <Button x:Name="start_button" Grid.Row="3" Width="100" Height="30" Content="Сгенерировать" Click="start_button_Click"/>
+        <Label x:Name="msg_label" Grid.Row="4" Width="200" Height="30" Visibility="Hidden"  Content="Генерация выполнена успешно!" />
+        <Button x:Name="save_button" Grid.Row="5" Width="100" Height="30" Visibility="Hidden" Click="save_button_Click" Content="Сохранить" />
+    </Grid>
+</Window>
