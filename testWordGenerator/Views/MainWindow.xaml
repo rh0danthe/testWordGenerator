@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="500">
     <Grid x:Name="grid1">
-
         <Grid.RowDefinitions>
             <RowDefinition  Height="30"></RowDefinition>
             <RowDefinition  Height="30"></RowDefinition>
@@ -25,9 +24,9 @@
             <TextBlock Text="Количество символов в слове"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="от"/>
-                <TextBox x:Name="minLengthTextBox" Width="50" Margin="10,0,10,0" Text="5"/>
+                <TextBox x:Name="minLengthTextBox" Width="50" Margin="10,0,10,0" Text="{Binding Mask.MinLength}"/>
                 <TextBlock Text="до"/>
-                <TextBox x:Name="maxLengthTextBox" Width="50" Margin="10,0,0,0" Text="15"/>
+                <TextBox x:Name="maxLengthTextBox" Width="50" Margin="10,0,0,0" Text="{Binding Mask.MaxLength}"/>
             </StackPanel>
             <TextBlock Text="Выберите символы для генерации (укажите процент содержания):"/>
             
@@ -38,9 +37,9 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="NumPercent" Text="30" Width="50"  Margin="0,0,10,0"/>
-                <TextBox x:Name="LetterPercent" Text="30" Width="50" Margin="0,0,10,0"/>
-                <TextBox x:Name="SymbolPercent" Text="40" Width="50"/>
+                <TextBox x:Name="NumPercent" Text="{Binding Mask.NumberPercent}" Width="50"  Margin="0,0,10,0"/>
+                <TextBox x:Name="LetterPercent" Text="{Binding Mask.LetterPercent}" Width="50" Margin="0,0,10,0"/>
+                <TextBox x:Name="SymbolPercent" Text="{Binding Mask.SymbolPercent}" Width="50"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
@@ -50,44 +49,43 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <ListBox x:Name="languageComboBox" Width="115" SelectionMode="Multiple" Margin="0,0,50,0">
-                    <ListBoxItem Content="Русский"/>
-                    <ListBoxItem Content="Английский"/>
-                    <ListBoxItem Content="Маленькие буквы"/>
-                    <ListBoxItem Content="Большие буквы"/>
+                <StackPanel Orientation="Vertical">
+                <ListBox x:Name="languageListBox" Width="115" SelectionMode="Multiple" Margin="0,0,50,20" ItemsSource="{Binding Mask.Language}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
+                
+                <ListBox x:Name="caseListBox" Width="115" SelectionMode="Multiple" Margin="0,0,50,0" ItemsSource="{Binding Mask.Case}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+                </StackPanel>
 
-                <ListBox x:Name="numberComboBox"  Width="100"  SelectionMode="Multiple" Margin="0,0,50,0">
-                    <ListBoxItem Content="0"/>
-                    <ListBoxItem Content="1"/>
-                    <ListBoxItem Content="2"/>
-                    <ListBoxItem Content="3"/>
-                    <ListBoxItem  Content="4"/>
-                    <ListBoxItem  Content="5"/>
-                    <ListBoxItem  Content="6"/>
-                    <ListBoxItem  Content="7"/>
-                    <ListBoxItem  Content="8"/>
-                    <ListBoxItem  Content="9"/>
+                <ListBox x:Name="numberListBox"  Width="100"  SelectionMode="Multiple" Margin="0,0,50,0" ItemsSource="{Binding Mask.Numbers}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
-                <ListBox x:Name="symbolComboBox" Width="100" SelectionMode="Multiple ">
-                    <ListBoxItem Content="!"/>
-                    <ListBoxItem Content="@"/>
-                    <ListBoxItem Content="#"/>
-                    <ListBoxItem Content="$"/>
-                    <ListBoxItem Content="%"/>
-                    <ListBoxItem Content="^"/>
-                    <ListBoxItem Content="?"/>
-                    <ListBoxItem Content="*"/>
-                    <ListBoxItem Content="("/>
-                    <ListBoxItem Content=")"/>
+                <ListBox x:Name="symbolListBox" Width="100" SelectionMode="Multiple" ItemsSource="{Binding Mask.Symbols}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
             </StackPanel>
             <TextBlock Text="Количество генерируемых слов:"/>
-            <TextBox x:Name="wordCountTextBox" Width="50" Margin="0,0,410,0" Text="15"/>
+            <TextBox x:Name="wordCountTextBox" Width="50" Margin="0,0,410,0" Text="{Binding Mask.Count}"/>
         </StackPanel>
 
-        <Button x:Name="start_button" Grid.Row="3" Width="100" Height="30" Content="Сгенерировать" Click="start_button_Click"/>
-        <Label x:Name="msg_label" Grid.Row="4" Width="200" Height="30" Visibility="Hidden"  Content="Генерация выполнена успешно!" />
-        <Button x:Name="save_button" Grid.Row="5" Width="100" Height="30" Visibility="Hidden" Click="save_button_Click" Content="Сохранить" />
+        <Button x:Name="start_button" Grid.Row="3" Width="100" Height="30" Content="Сгенерировать" Command="{Binding GenerateCommand}" CommandParameter="{Binding Mask}"/>
     </Grid>
 </Window>

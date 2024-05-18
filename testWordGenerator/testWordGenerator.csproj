@@ -80,15 +80,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Builders\CharVariantBuilder.cs" />
+    <Compile Include="Commands\BaseCommand.cs" />
+    <Compile Include="Commands\GenerateCommand.cs" />
+    <Compile Include="Handlers\WordSaveHandler.cs" />
+    <Compile Include="Strategies\WordSaveErrorStrategy.cs" />
+    <Compile Include="Strategies\WordSaveSuccessStrategy.cs" />
     <Compile Include="Models\CharList.cs" />
-    <Compile Include="Models\File.cs" />
     <Compile Include="Models\Mask.cs" />
-    <Compile Include="Models\NumList.cs" />
-    <Compile Include="Models\SymbolList.cs" />
-    <Compile Include="Repository\WordRepository.cs" />
+    <Compile Include="Presenters\Abstract\Presenter.cs" />
+    <Compile Include="Presenters\ItemPresenter.cs" />
     <Compile Include="Services\WordService.cs" />
-    <Compile Include="Utils\SymbolGenerator.cs" />
+    <Compile Include="Strategies\WordSaveStrategy.cs" />
+    <Compile Include="Utils\CharListFactory.cs" />
+    <Compile Include="Validators\MaskValidator.cs" />
+    <Compile Include="ViewModels\Adapters\MaskViewModelAdapter.cs" />
+    <Compile Include="ViewModels\MaskViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -120,9 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">

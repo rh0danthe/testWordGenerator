@@ -1,36 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using testWordGenerator.Models;
-using testWordGenerator.Repository;
 
 namespace testWordGenerator.Services
 {
-    internal class WordService
+    /// <summary>
+    /// Сервис для генерации слов.
+    /// </summary>
+    public class WordService
     {
-        private static readonly WordRepository _repository = new WordRepository();
-        private Random _rnd = new Random();
+        private static WordService _instance;
 
-        public void GenerateWords(Mask mask)
+        /// <summary>
+        /// Получает экземпляр класса WordService.
+        /// </summary>
+        /// <returns>Экземпляр класса WordService.</returns>
+        public static WordService GetInstance()
         {
-            for (int i = 0; i < mask.Count; i++)
-            {
-                var word = new Word();
-                word.Content = Generator(mask);
-                _repository.Add(word);
-            }
-
-        }
-
-        public ObservableCollection<Word> GetAll()
-        {
-            return _repository.GetAll();
+            return _instance ??= new WordService();
         }
         
-        public string Generator(Mask mask)
+        private WordService() {}
+        
+        private readonly Random _rnd = new Random();
+
+        /// <summary>
+        /// Генерирует список слов на основе маски.
+        /// </summary>
+        /// <param name="mask">Маска для генерации слов.</param>
+        /// <returns>Список сгенерированных слов.</returns>
+        public List<Word> GenerateWords(Mask mask)
+        {
+            var collection = new List<Word>();
+            for (int i = 0; i < mask.Count; i++)
+            {
+                var word = new Word
+                {
+                    Content = Generator(mask)
+                };
+                collection.Add(word);
+            }
+
+            return collection;
+        }
+        
+        /// <summary>
+        /// Генерирует слово на основе маски.
+        /// </summary>
+        /// <param name="mask">Маска для генерации слова.</param>
+        /// <returns>Сгенерированное слово.</returns>
+        private string Generator(Mask mask)
         {
             int length = _rnd.Next(mask.MinLength, mask.MaxLength + 1);
             int numCount = length * mask.NumPercent / 100;
@@ -41,17 +61,23 @@ namespace testWordGenerator.Services
 
             for (int j = 0; j < numCount; j++)
             {
-                wordChars.Add(mask.NumList.Items[_rnd.Next(mask.NumList.Items.Count)]);
+                if (mask.Numbers.Items.Count == 0)
+                    break;
+                wordChars.Add(mask.Numbers.Items[_rnd.Next(mask.Numbers.Items.Count)]);
             }
 
             for (int j = 0; j < letterCount; j++)
             {
-                wordChars.Add(mask.CharList.Items[_rnd.Next(mask.CharList.Items.Count)]);
+                if (mask.Letters.Items.Count == 0)
+                    break;
+                wordChars.Add(mask.Letters.Items[_rnd.Next(mask.Letters.Items.Count)]);
             }
 
             for (int j = 0; j < symbolCount; j++)
             {
-                wordChars.Add(mask.SymbolList.Items[_rnd.Next(mask.SymbolList.Items.Count)]);
+                if (mask.Symbols.Items.Count == 0)
+                    break;
+                wordChars.Add(mask.Symbols.Items[_rnd.Next(mask.Symbols.Items.Count)]);
             }
 
             wordChars = wordChars.OrderBy(c => _rnd.Next()).ToList();

@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace testWordGenerator.Models
 {
-    internal class Word
+    /// <summary>
+    /// Представляет слово.
+    /// </summary>
+    public class Word
     {
+        
+        /// <summary>
+        /// Содержимое слова.
+        /// </summary>
         public string Content { get; set; }
     }
 }
